@@ -49,12 +49,11 @@ function showAuth() {
 }
 function logout() {
     isLoggedIn = false;
-    stopTimers(); // Hentikan semua timer yang berjalan
-    localStorage.removeItem('token'); // Hapus token dari penyimpanan
-    
-    // Alih-alih langsung reload, kita arahkan ke URL dasar untuk membersihkan hash (#)
-    // Ini akan memicu reload halaman yang bersih ke state login
-    window.location.href = window.location.pathname;
+    stopTimers();
+    localStorage.removeItem('token');
+
+    // Ganti refresh dengan fungsi untuk menampilkan halaman login
+    showAuth();
 }
 async function loadSocPredictionChart() {
      try {
@@ -1097,3 +1096,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.addEventListener('click', unlockAudioContext);
     document.body.addEventListener('touchstart', unlockAudioContext); // Untuk mobile
 });
+
