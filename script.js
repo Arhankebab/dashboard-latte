@@ -1008,17 +1008,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if (loginForm) {
-        loginForm.addEventListener('submit', async (e) => {
+        loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const username = document.getElementById('login-username').value;
-            const password = document.getElementById('login-password').value;
-            try {
-                const response = await fetch('http://localhost:3000/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) });
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.message);
-                localStorage.setItem('token', data.token);
-                showApp();
-            } catch (error) { alert(`Error: ${error.message}`); }
+            console.log("Login dilewati untuk mode demo.");
+    
+            // Buat token palsu agar aplikasi berpikir kita sudah login
+            localStorage.setItem('token', 'dummy-token-for-demo');
+    
+            // Langsung tampilkan aplikasi/dashboard
+            showApp(); 
         });
     }
 
@@ -1096,4 +1094,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.addEventListener('click', unlockAudioContext);
     document.body.addEventListener('touchstart', unlockAudioContext); // Untuk mobile
 });
+
 
